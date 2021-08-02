@@ -208,7 +208,7 @@ function bootInstance(stt, value) {
             headers = {'Content-Type': 'application/json; charset=UTF-8',
                         'Authorization': 'Bearer '+ api
             }
-            datas = {
+            data = {
                 'type': type_boot[value]
             }
         }
@@ -217,7 +217,7 @@ function bootInstance(stt, value) {
             url: url,
             type: method,
             headers: headers,
-            data: JSON.stringify(datas),
+            data: JSON.stringify(data),
             success: function(data) {
                 // xử lý dữ liệu nhận được ở đây
                 // console.log(data);
