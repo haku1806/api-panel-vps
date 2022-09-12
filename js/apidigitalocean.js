@@ -100,7 +100,7 @@ function loadDataVPS() {
     api = $("#api").val();
     
     $.ajax({
-        url: host + "/droplets",
+        url: host + "/droplets?per_page=100",
         type: "GET",
         headers: {
             'Content-Type': 'application/json; charset=UTF-8',
@@ -198,21 +198,23 @@ function bootInstance(stt, value) {
         if (value == 3) {
             url = url + '/'  + instance[id].id;
             method = "DELETE";
-            headers = {'Content-Type': 'application/json; charset=UTF-8',
+            headers = {'Content-Type': 'application/json;',
                         'Authorization': 'Bearer '+ api
             }
         }
         else {
             url = url + '/' + instance[id].id + '/actions';
             method = "POST"
-            headers = {'Content-Type': 'application/json; charset=UTF-8',
+            headers = {'Content-Type': 'application/json;',
                         'Authorization': 'Bearer '+ api
             }
             data = {
                 'type': type_boot[value]
             }
         }
-    
+        
+        console.log(data)
+        console.log(headers)
         $.ajax({
             url: url,
             type: method,
