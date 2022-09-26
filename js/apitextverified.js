@@ -1,4 +1,4 @@
-var host = "http://localhost:1812";
+var host = "http://server.hakucloud.com:1812";
 var api = "";
 var token = "";
 
@@ -227,8 +227,8 @@ function get_detail_phone() {
                 $('#code').val(data.number);
                 $('#full_message').val(data.sms);
             } else {
-                $('#code').val("None");
-                $('#full_message').val("None");
+                $('#code').val("");
+                $('#full_message').val("");
             }
             
             $('#target_name').text(data.target_name);
@@ -281,8 +281,8 @@ function cancel_phone() {
             data = result.data;
             $('#phone').attr("data-id", "");
             $('#phone').val("");
-            $('#code').val("None");
-            $('#full_message').val("None");
+            $('#code').val("");
+            $('#full_message').val("");
             $('#target_name').text("None");
             $('#cost').text("None");
             $('#status').text("None");
@@ -333,8 +333,8 @@ function report_phone() {
             data = result.data;
             $('#phone').attr("data-id", "");
             $('#phone').val("");
-            $('#code').val("None");
-            $('#full_message').val("None");
+            $('#code').val("");
+            $('#full_message').val("");
             $('#target_name').text("None");
             $('#cost').text("None");
             $('#status').text("None");
