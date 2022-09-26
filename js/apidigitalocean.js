@@ -31,7 +31,6 @@ function confirmNotify(value, type) {
             selectTypeBootInstance(value, type)
         }
     }
-    
 }
 
 function checkLiveAccount() {
