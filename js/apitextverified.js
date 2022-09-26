@@ -1,4 +1,4 @@
-var host = "https://server.hakucloud.com:1812";
+var host = "http://server.hakucloud.com:1812";
 var api = "";
 var token = "";
 
