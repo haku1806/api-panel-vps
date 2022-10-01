@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckMail Panel</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-textverified.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="css\tmail.css"> -->
+    <link rel="stylesheet" href="css\common.css">
+    <link rel="stylesheet" href="css\vendor.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="js/lib/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mouse0270-bootstrap-notify/3.1.3/bootstrap-notify.min.js"
+        integrity="sha512-d0ZsJAyXsXlpeDNAhXj4mbaqpLfdyoOaQFmaFVG/KodZnAaVrdOsO9KiG62V7dcV+sHIFb7VTMmkB5JntAoq+Q=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mouse0270-bootstrap-notify/3.1.3/bootstrap-notify.js"
+        integrity="sha512-qoiMDdScbCFcBkB94JPbUdrqiVFQEukiCnQlafXF+cVAiDayHeT9jwnBrXSdPUOpk7KAwhrTgKFZqH/FDFiTcQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+</head>
+
+<body>
+    <!-- nav bar  -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <!-- Brand/logo -->
+        <a class="navbar-brand" href="index.html">HAKU API</a>
+
+        <!-- Links -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="index.html">Linode</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="digitalocean.html">DigitalOcean</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="textverified.html">Textverified</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="tmail.html">Check Mail</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- end nav bar  -->
+
+    <div class="container">
+        <div class="card-box">
+            <div class="row">
+                <div class="col">
+                    <h1 class="mt-6 title-notify" style="text-align: center; color: #030000;padding-bottom: 50px;">Panel
+                        CheckMail</h1>
+                    <div class="loader"></div>
+                </div>
+            </div>
+
+            <!-- API Token -->
+            <div class="row">
+                <div class="input-group mb-3">
+                    <!-- <textarea style='width:70%' class="form-control" cols="80" rows="2" class="notes" id='acc-check'
+                        placeholder="test@hotmail.com    password"></textarea> -->
+                    <input type="text" class="form-control mr-sm-2" id="email"
+                        placeholder="test@hotmail.com    password" name="email" value="" data-id="">
+                    <div class="input-group-append">
+                        <button class="btn btn-danger" type="button" onclick='check_mail()'>Check</button>
+                    </div>
+                </div>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control mr-sm-2" id="subject" placeholder="Search by subject. Skip if you don't need!"
+                        name="subject" value="" data-id="">
+                </div>
+            </div>
+            <!-- END API Token -->
+        </div>
+    </div>
+
+    <div class="flex flex-wrap">
+        <div class="w-full lg:w-4/4">
+            <div class="flex flex-col lg:min-h-tm-default">
+
+
+                <div class="flex flex-col lg:min-h-tm-default">
+                    <div class="flex-1 lg:flex">
+                        <div class="w-full lg:w-1/3 bg-white flex flex-col min-h-tm-mobile">
+                            <div class="messages flex flex-col-reverse divide-y divide-y-reverse divide-gray-200"
+                                id="subject_list">
+                                Trống
+                            </div>
+                        </div>
+
+                        <div
+                            class="message-content w-full lg:w-2/3 bg-white border-1 border-l border-gray-200 flex flex-col" id="message_content">
+                            <div id="message_0" class="flex-1 hidden lg:flex" style="display: display">
+                                <div class="w-2/3 m-auto">
+                                    <img class="m-auto max-w-full" src="https://tmail.checkccv.info/images/sample.jpg"
+                                        alt="mails">
+                                    <a class="block text-center text-xs text-gray-400 pt-4"
+                                        href="https://www.freepik.com" target="_blank" rel="noopener noreferrer">Above
+                                        Graphic by
+                                        <strong>Freepik</strong></a>
+                                </div>
+                            </div>
+                            <div x-show="id === 4640" id="message-4640" class="flex-1 lg:flex flex-col"
+                                style="display: none">
+                                <textarea class="hidden">To: skaniara66w24k4ch4@checkccv.info
+                    From: "Coursera" &lt;no-reply@t.mail.coursera.org&gt;
+                    Subject: Action Required: Please confirm your email
+                    Date: 30 Sep 2022 10:45 AM
+                    Content-Type: text/html
+                    
+                    &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;&lt;html&gt;&lt;head&gt;&lt;meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/&gt;&lt;style type="text/css"&gt;/* Client-specific Styles */
+                    #outlook a{padding:0;} /* Force Outlook to provide a "view in browser" button. */
+                    body{width:100% !important;} .ReadMsgBody{width:100%;} .ExternalClass{width:100%;} /* Force Hotmail to display emails at full width */
+                    body{-webkit-text-size-adjust:none;} /* Prevent Webkit platforms from changing default text sizes. */
+                    /* Reset Styles */
+                    body{margin:0; padding:0;}
+                    img{border:0; height:auto; line-height:100%; outline:none; text-decoration:none;}
+                    table td{border-collapse:collapse;}
+                    #backgroundTable{height:100% !important; margin:0; padding:0; width:100% !important;}
+                    p {margin-top: 14px; margin-bottom: 14px;}
+                    
+                    /* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: PREHEADER /\/\/\/\/\/\/\/\/\/\ */
+                    .preheaderContent div a:link, .preheaderContent div a:visited, /* Yahoo! Mail Override */ .preheaderContent div a .yshortcuts /* Yahoo! Mail Override */{
+                      color: '#3b6e8f';
+                      font-weight:'normal';
+                      text-decoration:'underline';}
+                    .mainContent a:link, a:visited{
+                      color:'#336699';}
+                    /* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: FOOTER LINKS /\/\/\/\/\/\/\/\/\/\ */
+                    .footerContent div a:link, .footerContent div a:visited, /* Yahoo! Mail Override */ .footerContent div a .yshortcuts /* Yahoo! Mail Override */{
+                      /*@editable*/ color:'#33699';
+                      /*@editable*/ font-weight:'normal';
+                      /*@editable*/ text-decoration:'underline';}&lt;/style&gt;&lt;/head&gt;&lt;body&gt;
+                    &lt;div style="color:transparent;visibility:hidden;opacity:0;font-size:0px;border:0;max-height:1px;width:1px;margin:0px;padding:0px;border-width:0px!important;display:none!important;line-height:0px!important;"&gt;&lt;img border="0" width="1" height="1" src="http://click.mail.coursera.org/q/28HxlzQjskqQ1RVygmSFog~~/AAAAAQA~/RgRlGU3gPVcIY291cnNlcmFCCmMz4Mg2Y2DbQLJSIFNrYW5pYXJhNjZ3MjRrNGNoNEBjaGVja2Njdi5pbmZvWAQAAAAA" alt=""/&gt;&lt;/div&gt;
+                    &lt;center&gt;&lt;table id="backgroundTable" border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color: #efefef;" height="100%"&gt;&lt;tr&gt;&lt;td valign="top" align="center"&gt;&lt;table border="0" cellpadding="0" cellspacing="0" width="640" style="border: 0; background-color: #efefef; padding-left: 20px; padding-right: 20px;"&gt;&lt;table border="0" cellpadding="0" cellspacing="0" width="600" style="border: 0; background-color: #ffffff; margin-top: 0;"&gt;&lt;tr&gt;&lt;td bgcolor="#efefef" width="200" valign="middle" style="padding: 10px 0 10px 30px; text-align: right;" align="left" height="60"&gt;&lt;div style="font-size: 14px; letter-spacing: 1px; font-weight: bold; color: #787878;"&gt;&lt;a target="blank" href="https://anon.ws/?https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249YWNjb3VudHMuZW1haWwudmVyaWZ5fm5vdGlmaWNhdGlvbnMuYXV0by5EYzJVcFVDdEVlMmtUUks4NHBERGxRIiwidHJhY2tpbmciOnsidXNlcklkIjotMSwidXNlckVtYWlsIjoiU2thbmlhcmE2NncyNGs0Y2g0QGNoZWNrY2N2LmluZm8iLCJub3RpZmljYXRpb25UeXBlIjoiYWNjb3VudHMuZW1haWwudmVyaWZ5IiwiY2FtcGFpZ25JZCI6Im5vdGlmaWNhdGlvbnMuYXV0by5EYzJVcFVDdEVlMmtUUks4NHBERGxRIiwiY2FtcGFpZ25Hcm91cCI6ImFjY291bnRzLmVtYWlsLnZlcmlmeSIsImxpbmtzIjpbXX19LCJ1c2VySWQiOi0xfQ.ghqoYsjWOYFd_dzOVVkCiGi_dYjF3sbFeLz4gu28tMM" target="_blank"&gt;&lt;img border="0" src="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera-misc.s3.amazonaws.com/mailspin/prod/11_03_2020_18_12_04_coursera-wordmark-blue.png?w=260&amp;amp;fit=scale" width="130" alt=" Coursera " style="width: 130px; height: auto; " align="bottom" class="coursera-logo-blue-image" height="auto"/&gt;&lt;/a&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;table border="0" cellpadding="0" cellspacing="0" width="600" style="border: 1px solid #dddddd; background-color: #ffffff;"&gt;&lt;tr&gt;&lt;td class="mainContent" colspan="2" valign="top" style="padding: 30px 30px 0 30px; font-family: Arial; color: #444444; font-size: 14px; line-height: 1.5em;" align="left"&gt;&lt;div style="font-size: 14px; line-height: 1.6em; color: #444444;"&gt;Hi Heigl Mandava,&lt;p&gt;Please confirm&amp;nbsp;&lt;a target="blank" href="https://anon.ws/?mailto:Skaniara66w24k4ch4@checkccv.info"&gt;Skaniara66w24k4ch4@checkccv.info&lt;/a&gt;&lt;span&gt;. Thank you and happy learning!&lt;/span&gt;&lt;/p&gt;&lt;p style="text-align: center;"&gt;&lt;a target="blank" href="https://anon.ws/?https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvYWNjb3VudC9lbWFpbF92ZXJpZnkvan5BVUNqN0podWRQTGtRdzJzTVYxcGxyN2U5UHR4dnQ3X18wdUxoUkd4eDUtSndjSlBrRTY4MEVqZWRILXFDeXhWVGlXSkRxM09WN3h1X05fTTd3bUxxLUtQZDc4MExjODMwVEVTN19jYmFTN3dMWk4xMHoyLWhYQVFHZDV0ekhZVzYzaUc4c0dzMUNlS0Rza2VZY3dZaW9mRlRJYUE1YjNNeXZfYnRqZTZ1SWhfa3hyY1pqSF9vZWpsWXdva2tsQ2Fpa1FuZUhhZldCcTBOZz09P3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249YWNjb3VudHMuZW1haWwudmVyaWZ5fm5vdGlmaWNhdGlvbnMuYXV0by5EYzJVcFVDdEVlMmtUUks4NHBERGxRIiwidHJhY2tpbmciOnsidXNlcklkIjotMSwidXNlckVtYWlsIjoiU2thbmlhcmE2NncyNGs0Y2g0QGNoZWNrY2N2LmluZm8iLCJub3RpZmljYXRpb25UeXBlIjoiYWNjb3VudHMuZW1haWwudmVyaWZ5IiwiY2FtcGFpZ25JZCI6Im5vdGlmaWNhdGlvbnMuYXV0by5EYzJVcFVDdEVlMmtUUks4NHBERGxRIiwiY2FtcGFpZ25Hcm91cCI6ImFjY291bnRzLmVtYWlsLnZlcmlmeSIsImxpbmtzIjpbXX19LCJ1c2VySWQiOi0xfQ.aqHftBzfVSWGiUc5ZEPKtqH886SywnNjH-N9hVo-FX0" style="text-decoration: none; vertical-align:top;"&gt;&lt;span style="font-size: 16px; min-width: 200px; background-color: #19ab58; line-height: 42px; display: inline-block; color: white; border-radius: 4px; text-align: center; margin-top:10px; padding:0 8px;"&gt;Confirm email address &amp;raquo;&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;p style="text-align: center;"&gt;If you have trouble using the button above, you can also confirm by copying the link below into your address bar:&lt;/p&gt;&lt;p style="text-align: center; font-size: 9px; line-height: 100%; color: #2196F3; text-decoration: underline;"&gt;https://www.coursera.org/account/email_verify/j~AUCj7JhudPLkQw2sMV1plr7e9Ptxvt7__0uLhRGxx5-JwcJPkE680EjedH-qCyxVTiWJDq3OV7xu_N_M7wmLq-KPd780Lc830TES7_cbaS7wLZN10z2-hXAQGd5tzHYW63iG8sGs1CeKDskeYcwYiofFTIaA5b3Myv_btje6uIh_kxrcZjH_oejlYwokklCaikQneHafWBq0Ng==&lt;/p&gt;&lt;p&gt;Cheers,&lt;br/&gt;Your Coursera Team&lt;br/&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;div style="font-size:12px; color:#808080"&gt;If you did not sign up or request for email confirmation, please ignore this email.&lt;/div&gt;&lt;/p&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;table border="0" cellpadding="0" cellspacing="0" width="600" style="background-color: #efefef; border: 0; border-bottom: 0; margin-top: 20px;"&gt;&lt;tr&gt;&lt;td class="footerContent" style="vertical-align: top; text-align: center;padding-bottom:20px;padding-top:0;padding-left:0;padding-right:0;"&gt;&lt;div&gt;&lt;a target="blank" href="https://anon.ws/?https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwOi8vd3d3LmZhY2Vib29rLmNvbS9Db3Vyc2VyYT91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b3RoZXImdXRtX2NhbXBhaWduPWFjY291bnRzLmVtYWlsLnZlcmlmeX5ub3RpZmljYXRpb25zLmF1dG8uRGMyVXBVQ3RFZTJrVFJLODRwRERsUSIsInRyYWNraW5nIjp7InVzZXJJZCI6LTEsInVzZXJFbWFpbCI6IlNrYW5pYXJhNjZ3MjRrNGNoNEBjaGVja2Njdi5pbmZvIiwibm90aWZpY2F0aW9uVHlwZSI6ImFjY291bnRzLmVtYWlsLnZlcmlmeSIsImNhbXBhaWduSWQiOiJub3RpZmljYXRpb25zLmF1dG8uRGMyVXBVQ3RFZTJrVFJLODRwRERsUSIsImNhbXBhaWduR3JvdXAiOiJhY2NvdW50cy5lbWFpbC52ZXJpZnkiLCJsaW5rcyI6W119fSwidXNlcklkIjotMX0.n1-3cVuYxO_UTxkxjzJa5Q7YWIl5shWLNHODAB5IRPs" rel="nofollow" style="margin: 0 7px;" target="_blank"&gt;&lt;img src="https://dt5zaw6a98blc.cloudfront.net/site-static/images/footer/facebook.png" alt="facebook" width="24" style="border: none; width: 24px; height: 24px; opacity: 0.6;" height="24"/&gt;&lt;/a&gt;&lt;a target="blank" href="https://anon.ws/?https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3R3aXR0ZXIuY29tL2NvdXJzZXJhP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249YWNjb3VudHMuZW1haWwudmVyaWZ5fm5vdGlmaWNhdGlvbnMuYXV0by5EYzJVcFVDdEVlMmtUUks4NHBERGxRIiwidHJhY2tpbmciOnsidXNlcklkIjotMSwidXNlckVtYWlsIjoiU2thbmlhcmE2NncyNGs0Y2g0QGNoZWNrY2N2LmluZm8iLCJub3RpZmljYXRpb25UeXBlIjoiYWNjb3VudHMuZW1haWwudmVyaWZ5IiwiY2FtcGFpZ25JZCI6Im5vdGlmaWNhdGlvbnMuYXV0by5EYzJVcFVDdEVlMmtUUks4NHBERGxRIiwiY2FtcGFpZ25Hcm91cCI6ImFjY291bnRzLmVtYWlsLnZlcmlmeSIsImxpbmtzIjpbXX19LCJ1c2VySWQiOi0xfQ.jf2Qm7HWZ6THXGbHh4rzCWS0CRblMsasi14nsKs8pkk" rel="nofollow" style="margin: 0 7px;" target="_blank"&gt;&lt;img src="https://dt5zaw6a98blc.cloudfront.net/site-static/images/footer/twitter.png" alt="twitter" width="24" style="border: none; width: 24px; height: 24px; opacity: 0.6;" height="24"/&gt;&lt;/a&gt;&lt;a target="blank" href="https://anon.ws/?https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwOi8vYmxvZy5jb3Vyc2VyYS5vcmcvP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249YWNjb3VudHMuZW1haWwudmVyaWZ5fm5vdGlmaWNhdGlvbnMuYXV0by5EYzJVcFVDdEVlMmtUUks4NHBERGxRIiwidHJhY2tpbmciOnsidXNlcklkIjotMSwidXNlckVtYWlsIjoiU2thbmlhcmE2NncyNGs0Y2g0QGNoZWNrY2N2LmluZm8iLCJub3RpZmljYXRpb25UeXBlIjoiYWNjb3VudHMuZW1haWwudmVyaWZ5IiwiY2FtcGFpZ25JZCI6Im5vdGlmaWNhdGlvbnMuYXV0by5EYzJVcFVDdEVlMmtUUks4NHBERGxRIiwiY2FtcGFpZ25Hcm91cCI6ImFjY291bnRzLmVtYWlsLnZlcmlmeSIsImxpbmtzIjpbXX19LCJ1c2VySWQiOi0xfQ.OSZCYefHRlcQ2AbwUo_5PpJJRL4rzMbXng6uZ5KzDWA" rel="nofollow" style="margin: 0 7px;" target="_blank"&gt;&lt;img src="https://dt5zaw6a98blc.cloudfront.net/site-static/images/footer/blog.png" alt="blog" width="24" style="border: none; width: 24px; height: 24px; opacity: 0.6;" height="24"/&gt;&lt;/a&gt;&lt;a target="blank" href="https://anon.ws/?https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3BsdXMuZ29vZ2xlLmNvbS8xMTE5NTA1OTQwMzkyNjkyODE0NjkvcG9zdHM_dXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW90aGVyJnV0bV9jYW1wYWlnbj1hY2NvdW50cy5lbWFpbC52ZXJpZnl-bm90aWZpY2F0aW9ucy5hdXRvLkRjMlVwVUN0RWUya1RSSzg0cEREbFEiLCJ0cmFja2luZyI6eyJ1c2VySWQiOi0xLCJ1c2VyRW1haWwiOiJTa2FuaWFyYTY2dzI0azRjaDRAY2hlY2tjY3YuaW5mbyIsIm5vdGlmaWNhdGlvblR5cGUiOiJhY2NvdW50cy5lbWFpbC52ZXJpZnkiLCJjYW1wYWlnbklkIjoibm90aWZpY2F0aW9ucy5hdXRvLkRjMlVwVUN0RWUya1RSSzg0cEREbFEiLCJjYW1wYWlnbkdyb3VwIjoiYWNjb3VudHMuZW1haWwudmVyaWZ5IiwibGlua3MiOltdfX0sInVzZXJJZCI6LTF9.CWZPJSoOhYOZ3spAFIm88j-T_RRxqBVanJ8n3etHeQM" rel="nofollow" style="margin: 0 7px;" target="_blank"&gt;&lt;img src="https://dt5zaw6a98blc.cloudfront.net/site-static/images/footer/googleplus.png" alt="blog" width="24" style="border: none; width: 24px; height: 24px; opacity: 0.6;" height="24"/&gt;&lt;/a&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="footerContent" style="color:#808080; font-size:12px; line-height:150%; padding-top:0; padding-right:0; padding-bottom:0; padding-left:0; text-align:center;"&gt;&lt;div&gt;You are receiving this email because Skaniara66w24k4ch4@checkccv.info is registered on Coursera.&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="footerContent" style="color:#808080; font-size:12px; line-height:150%; padding-top:0; padding-right:0; padding-bottom:20px; padding-left:0; text-align:center;"&gt;&lt;div&gt;Please do not reply directly to this email. If you have any questions or feedback, please visit our &lt;a target="blank" href="https://anon.ws/?https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL2xlYXJuZXIuY291cnNlcmEuaGVscC9oYz91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b3RoZXImdXRtX2NhbXBhaWduPWFjY291bnRzLmVtYWlsLnZlcmlmeX5ub3RpZmljYXRpb25zLmF1dG8uRGMyVXBVQ3RFZTJrVFJLODRwRERsUSIsInRyYWNraW5nIjp7InVzZXJJZCI6LTEsInVzZXJFbWFpbCI6IlNrYW5pYXJhNjZ3MjRrNGNoNEBjaGVja2Njdi5pbmZvIiwibm90aWZpY2F0aW9uVHlwZSI6ImFjY291bnRzLmVtYWlsLnZlcmlmeSIsImNhbXBhaWduSWQiOiJub3RpZmljYXRpb25zLmF1dG8uRGMyVXBVQ3RFZTJrVFJLODRwRERsUSIsImNhbXBhaWduR3JvdXAiOiJhY2NvdW50cy5lbWFpbC52ZXJpZnkiLCJsaW5rcyI6W119fSwidXNlcklkIjotMX0.JYy3hbwGzySZfWL_fJhKqIidyZNQ3_vZgzibAY5IHPA" target="_blank"&gt;support site&lt;/a&gt;.&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class="footerContent" style="color:#808080; font-size:12px; line-height:150%; padding-top:0; padding-right:0; padding-bottom:20px; padding-left:0; text-align:center;" valign="top"&gt;&lt;em&gt;Copyright (c) 2022 Coursera, Inc&lt;/em&gt;&amp;nbsp;|&amp;nbsp;381 E. Evelyn Avenue, Mountain View, CA 94041 USA&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/table&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/center&gt;&lt;img src="https://eventing.coursera.org/img/cWLtvhtiKPBXozIXrNWBR0JvKKKzO3wwVoE3yjaGqclPzrFv_6i0cUt3h44LBe3r4BQ_Fcp_qGVT_fJHmjeylg.afwPWrvH53c-TPysbRt1sQ.2gHRUY2aSOuard4Sn9iifwf1G30awTDVI6AvK_qERFatlWxspIEODMxmswz4p4NNthUuR4L07yvW4GWED6HCx3HrFCiWXkUIsnbR7UuxKKUFBd3RwZm8gqxqwJfkuEhgrhYzw6yOtwbh7eI13raqWPvjaZ4GETfjbqForXqeHTGmMJuHbSnXNMJjMA1YcsuIvokK0_WetvQBmFTi2Ix1IyjZ6KvRq9_Ad7IP8zvQzNevxOHxVUUUdNWbN2emjiSEKB9BgeXayphcRpFfyHjzWjF-nshHzASAd2Re-KS0b9EQVJBugI2ICekdSI_mX_iuY9RsihzHMrSwMMNbI2qq8YaGwGPfcYg2HdLKdijhr6RZlPCCrbSNsRkfYFlt2Tia" border="0" width="1" height="1"&gt;
+                    &lt;img border="0" width="1" height="1" alt="" src="http://click.mail.coursera.org/q/MxfyL95hkmUuxvKEyKC7Pg~~/AAAAAQA~/RgRlGU3gPlcIY291cnNlcmFCCmMz4Mg2Y2DbQLJSIFNrYW5pYXJhNjZ3MjRrNGNoNEBjaGVja2Njdi5pbmZvWAQAAAAA"&gt;
+                    &lt;/body&gt;&lt;/html&gt;</textarea>
+                                <div class="flex flex-col flex-none py-5 px-6">
+                                    <div class="flex justify-between items-center">
+                                        <div>
+                                            <div class="text-gray-900 text-lg">Action Required: Please confirm your
+                                                email
+                                            </div>
+                                            <div class="text-xs text-gray-400">Coursera - no-reply@t.mail.coursera.org
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="text-xs text-gray-400">30 Sep 2022 10:45 AM</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <iframe class="w-full flex flex-grow px-5" srcdoc="<!DOCTYPE html PUBLIC &quot;-//W3C//DTD XHTML 1.0 Transitional//EN&quot; &quot;http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd&quot;><html><head><meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;/><style type=&quot;text/css&quot;>/* Client-specific Styles */
+                                    #outlook a{padding:0;} /* Force Outlook to provide a &quot;view in browser&quot; button. */
+                                    body{width:100% !important;} .ReadMsgBody{width:100%;} .ExternalClass{width:100%;} /* Force Hotmail to display emails at full width */
+                                    body{-webkit-text-size-adjust:none;} /* Prevent Webkit platforms from changing default text sizes. */
+                                    /* Reset Styles */
+                                    body{margin:0; padding:0;}
+                                    img{border:0; height:auto; line-height:100%; outline:none; text-decoration:none;}
+                                    table td{border-collapse:collapse;}
+                                    #backgroundTable{height:100% !important; margin:0; padding:0; width:100% !important;}
+                                    p {margin-top: 14px; margin-bottom: 14px;}
+                                    
+                                    /* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: PREHEADER /\/\/\/\/\/\/\/\/\/\ */
+                                    .preheaderContent div a:link, .preheaderContent div a:visited, /* Yahoo! Mail Override */ .preheaderContent div a .yshortcuts /* Yahoo! Mail Override */{
+                                      color: '#3b6e8f';
+                                      font-weight:'normal';
+                                      text-decoration:'underline';}
+                                    .mainContent a:link, a:visited{
+                                      color:'#336699';}
+                                    /* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: FOOTER LINKS /\/\/\/\/\/\/\/\/\/\ */
+                                    .footerContent div a:link, .footerContent div a:visited, /* Yahoo! Mail Override */ .footerContent div a .yshortcuts /* Yahoo! Mail Override */{
+                                      /*@editable*/ color:'#33699';
+                                      /*@editable*/ font-weight:'normal';
+                                      /*@editable*/ text-decoration:'underline';}</style></head><body>
+                                    <div style=&quot;color:transparent;visibility:hidden;opacity:0;font-size:0px;border:0;max-height:1px;width:1px;margin:0px;padding:0px;border-width:0px!important;display:none!important;line-height:0px!important;&quot;><img border=&quot;0&quot; width=&quot;1&quot; height=&quot;1&quot; src=&quot;http://click.mail.coursera.org/q/28HxlzQjskqQ1RVygmSFog~~/AAAAAQA~/RgRlGU3gPVcIY291cnNlcmFCCmMz4Mg2Y2DbQLJSIFNrYW5pYXJhNjZ3MjRrNGNoNEBjaGVja2Njdi5pbmZvWAQAAAAA&quot; alt=&quot;&quot;/></div>
+                                    <center><table id=&quot;backgroundTable&quot; border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;100%&quot; style=&quot;background-color: #efefef;&quot; height=&quot;100%&quot;><tr><td valign=&quot;top&quot; align=&quot;center&quot;><table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;640&quot; style=&quot;border: 0; background-color: #efefef; padding-left: 20px; padding-right: 20px;&quot;><table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;600&quot; style=&quot;border: 0; background-color: #ffffff; margin-top: 0;&quot;><tr><td bgcolor=&quot;#efefef&quot; width=&quot;200&quot; valign=&quot;middle&quot; style=&quot;padding: 10px 0 10px 30px; text-align: right;&quot; align=&quot;left&quot; height=&quot;60&quot;><div style=&quot;font-size: 14px; letter-spacing: 1px; font-weight: bold; color: #787878;&quot;><a target=&quot;blank&quot; href=&quot;https://anon.ws/?https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249YWNjb3VudHMuZW1haWwudmVyaWZ5fm5vdGlmaWNhdGlvbnMuYXV0by5EYzJVcFVDdEVlMmtUUks4NHBERGxRIiwidHJhY2tpbmciOnsidXNlcklkIjotMSwidXNlckVtYWlsIjoiU2thbmlhcmE2NncyNGs0Y2g0QGNoZWNrY2N2LmluZm8iLCJub3RpZmljYXRpb25UeXBlIjoiYWNjb3VudHMuZW1haWwudmVyaWZ5IiwiY2FtcGFpZ25JZCI6Im5vdGlmaWNhdGlvbnMuYXV0by5EYzJVcFVDdEVlMmtUUks4NHBERGxRIiwiY2FtcGFpZ25Hcm91cCI6ImFjY291bnRzLmVtYWlsLnZlcmlmeSIsImxpbmtzIjpbXX19LCJ1c2VySWQiOi0xfQ.ghqoYsjWOYFd_dzOVVkCiGi_dYjF3sbFeLz4gu28tMM&quot; target=&quot;_blank&quot;><img border=&quot;0&quot; src=&quot;https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera-misc.s3.amazonaws.com/mailspin/prod/11_03_2020_18_12_04_coursera-wordmark-blue.png?w=260&amp;amp;fit=scale&quot; width=&quot;130&quot; alt=&quot; Coursera &quot; style=&quot;width: 130px; height: auto; &quot; align=&quot;bottom&quot; class=&quot;coursera-logo-blue-image&quot; height=&quot;auto&quot;/></a></div></td></tr></table><table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;600&quot; style=&quot;border: 1px solid #dddddd; background-color: #ffffff;&quot;><tr><td class=&quot;mainContent&quot; colspan=&quot;2&quot; valign=&quot;top&quot; style=&quot;padding: 30px 30px 0 30px; font-family: Arial; color: #444444; font-size: 14px; line-height: 1.5em;&quot; align=&quot;left&quot;><div style=&quot;font-size: 14px; line-height: 1.6em; color: #444444;&quot;>Hi Heigl Mandava,<p>Please confirm&amp;nbsp;<a target=&quot;blank&quot; href=&quot;https://anon.ws/?mailto:Skaniara66w24k4ch4@checkccv.info&quot;>Skaniara66w24k4ch4@checkccv.info</a><span>. Thank you and happy learning!</span></p><p style=&quot;text-align: center;&quot;><a target=&quot;blank&quot; href=&quot;https://anon.ws/?https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3d3dy5jb3Vyc2VyYS5vcmcvYWNjb3VudC9lbWFpbF92ZXJpZnkvan5BVUNqN0podWRQTGtRdzJzTVYxcGxyN2U5UHR4dnQ3X18wdUxoUkd4eDUtSndjSlBrRTY4MEVqZWRILXFDeXhWVGlXSkRxM09WN3h1X05fTTd3bUxxLUtQZDc4MExjODMwVEVTN19jYmFTN3dMWk4xMHoyLWhYQVFHZDV0ekhZVzYzaUc4c0dzMUNlS0Rza2VZY3dZaW9mRlRJYUE1YjNNeXZfYnRqZTZ1SWhfa3hyY1pqSF9vZWpsWXdva2tsQ2Fpa1FuZUhhZldCcTBOZz09P3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249YWNjb3VudHMuZW1haWwudmVyaWZ5fm5vdGlmaWNhdGlvbnMuYXV0by5EYzJVcFVDdEVlMmtUUks4NHBERGxRIiwidHJhY2tpbmciOnsidXNlcklkIjotMSwidXNlckVtYWlsIjoiU2thbmlhcmE2NncyNGs0Y2g0QGNoZWNrY2N2LmluZm8iLCJub3RpZmljYXRpb25UeXBlIjoiYWNjb3VudHMuZW1haWwudmVyaWZ5IiwiY2FtcGFpZ25JZCI6Im5vdGlmaWNhdGlvbnMuYXV0by5EYzJVcFVDdEVlMmtUUks4NHBERGxRIiwiY2FtcGFpZ25Hcm91cCI6ImFjY291bnRzLmVtYWlsLnZlcmlmeSIsImxpbmtzIjpbXX19LCJ1c2VySWQiOi0xfQ.aqHftBzfVSWGiUc5ZEPKtqH886SywnNjH-N9hVo-FX0&quot; style=&quot;text-decoration: none; vertical-align:top;&quot;><span style=&quot;font-size: 16px; min-width: 200px; background-color: #19ab58; line-height: 42px; display: inline-block; color: white; border-radius: 4px; text-align: center; margin-top:10px; padding:0 8px;&quot;>Confirm email address &amp;raquo;</span></a></p><p style=&quot;text-align: center;&quot;>If you have trouble using the button above, you can also confirm by copying the link below into your address bar:</p><p style=&quot;text-align: center; font-size: 9px; line-height: 100%; color: #2196F3; text-decoration: underline;&quot;>https://www.coursera.org/account/email_verify/j~AUCj7JhudPLkQw2sMV1plr7e9Ptxvt7__0uLhRGxx5-JwcJPkE680EjedH-qCyxVTiWJDq3OV7xu_N_M7wmLq-KPd780Lc830TES7_cbaS7wLZN10z2-hXAQGd5tzHYW63iG8sGs1CeKDskeYcwYiofFTIaA5b3Myv_btje6uIh_kxrcZjH_oejlYwokklCaikQneHafWBq0Ng==</p><p>Cheers,<br/>Your Coursera Team<br/><br/></p><p><div style=&quot;font-size:12px; color:#808080&quot;>If you did not sign up or request for email confirmation, please ignore this email.</div></p></div></td></tr></table><table border=&quot;0&quot; cellpadding=&quot;0&quot; cellspacing=&quot;0&quot; width=&quot;600&quot; style=&quot;background-color: #efefef; border: 0; border-bottom: 0; margin-top: 20px;&quot;><tr><td class=&quot;footerContent&quot; style=&quot;vertical-align: top; text-align: center;padding-bottom:20px;padding-top:0;padding-left:0;padding-right:0;&quot;><div><a target=&quot;blank&quot; href=&quot;https://anon.ws/?https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwOi8vd3d3LmZhY2Vib29rLmNvbS9Db3Vyc2VyYT91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b3RoZXImdXRtX2NhbXBhaWduPWFjY291bnRzLmVtYWlsLnZlcmlmeX5ub3RpZmljYXRpb25zLmF1dG8uRGMyVXBVQ3RFZTJrVFJLODRwRERsUSIsInRyYWNraW5nIjp7InVzZXJJZCI6LTEsInVzZXJFbWFpbCI6IlNrYW5pYXJhNjZ3MjRrNGNoNEBjaGVja2Njdi5pbmZvIiwibm90aWZpY2F0aW9uVHlwZSI6ImFjY291bnRzLmVtYWlsLnZlcmlmeSIsImNhbXBhaWduSWQiOiJub3RpZmljYXRpb25zLmF1dG8uRGMyVXBVQ3RFZTJrVFJLODRwRERsUSIsImNhbXBhaWduR3JvdXAiOiJhY2NvdW50cy5lbWFpbC52ZXJpZnkiLCJsaW5rcyI6W119fSwidXNlcklkIjotMX0.n1-3cVuYxO_UTxkxjzJa5Q7YWIl5shWLNHODAB5IRPs&quot; rel=&quot;nofollow&quot; style=&quot;margin: 0 7px;&quot; target=&quot;_blank&quot;><img src=&quot;https://dt5zaw6a98blc.cloudfront.net/site-static/images/footer/facebook.png&quot; alt=&quot;facebook&quot; width=&quot;24&quot; style=&quot;border: none; width: 24px; height: 24px; opacity: 0.6;&quot; height=&quot;24&quot;/></a><a target=&quot;blank&quot; href=&quot;https://anon.ws/?https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3R3aXR0ZXIuY29tL2NvdXJzZXJhP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249YWNjb3VudHMuZW1haWwudmVyaWZ5fm5vdGlmaWNhdGlvbnMuYXV0by5EYzJVcFVDdEVlMmtUUks4NHBERGxRIiwidHJhY2tpbmciOnsidXNlcklkIjotMSwidXNlckVtYWlsIjoiU2thbmlhcmE2NncyNGs0Y2g0QGNoZWNrY2N2LmluZm8iLCJub3RpZmljYXRpb25UeXBlIjoiYWNjb3VudHMuZW1haWwudmVyaWZ5IiwiY2FtcGFpZ25JZCI6Im5vdGlmaWNhdGlvbnMuYXV0by5EYzJVcFVDdEVlMmtUUks4NHBERGxRIiwiY2FtcGFpZ25Hcm91cCI6ImFjY291bnRzLmVtYWlsLnZlcmlmeSIsImxpbmtzIjpbXX19LCJ1c2VySWQiOi0xfQ.jf2Qm7HWZ6THXGbHh4rzCWS0CRblMsasi14nsKs8pkk&quot; rel=&quot;nofollow&quot; style=&quot;margin: 0 7px;&quot; target=&quot;_blank&quot;><img src=&quot;https://dt5zaw6a98blc.cloudfront.net/site-static/images/footer/twitter.png&quot; alt=&quot;twitter&quot; width=&quot;24&quot; style=&quot;border: none; width: 24px; height: 24px; opacity: 0.6;&quot; height=&quot;24&quot;/></a><a target=&quot;blank&quot; href=&quot;https://anon.ws/?https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwOi8vYmxvZy5jb3Vyc2VyYS5vcmcvP3V0bV9tZWRpdW09ZW1haWwmdXRtX3NvdXJjZT1vdGhlciZ1dG1fY2FtcGFpZ249YWNjb3VudHMuZW1haWwudmVyaWZ5fm5vdGlmaWNhdGlvbnMuYXV0by5EYzJVcFVDdEVlMmtUUks4NHBERGxRIiwidHJhY2tpbmciOnsidXNlcklkIjotMSwidXNlckVtYWlsIjoiU2thbmlhcmE2NncyNGs0Y2g0QGNoZWNrY2N2LmluZm8iLCJub3RpZmljYXRpb25UeXBlIjoiYWNjb3VudHMuZW1haWwudmVyaWZ5IiwiY2FtcGFpZ25JZCI6Im5vdGlmaWNhdGlvbnMuYXV0by5EYzJVcFVDdEVlMmtUUks4NHBERGxRIiwiY2FtcGFpZ25Hcm91cCI6ImFjY291bnRzLmVtYWlsLnZlcmlmeSIsImxpbmtzIjpbXX19LCJ1c2VySWQiOi0xfQ.OSZCYefHRlcQ2AbwUo_5PpJJRL4rzMbXng6uZ5KzDWA&quot; rel=&quot;nofollow&quot; style=&quot;margin: 0 7px;&quot; target=&quot;_blank&quot;><img src=&quot;https://dt5zaw6a98blc.cloudfront.net/site-static/images/footer/blog.png&quot; alt=&quot;blog&quot; width=&quot;24&quot; style=&quot;border: none; width: 24px; height: 24px; opacity: 0.6;&quot; height=&quot;24&quot;/></a><a target=&quot;blank&quot; href=&quot;https://anon.ws/?https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL3BsdXMuZ29vZ2xlLmNvbS8xMTE5NTA1OTQwMzkyNjkyODE0NjkvcG9zdHM_dXRtX21lZGl1bT1lbWFpbCZ1dG1fc291cmNlPW90aGVyJnV0bV9jYW1wYWlnbj1hY2NvdW50cy5lbWFpbC52ZXJpZnl-bm90aWZpY2F0aW9ucy5hdXRvLkRjMlVwVUN0RWUya1RSSzg0cEREbFEiLCJ0cmFja2luZyI6eyJ1c2VySWQiOi0xLCJ1c2VyRW1haWwiOiJTa2FuaWFyYTY2dzI0azRjaDRAY2hlY2tjY3YuaW5mbyIsIm5vdGlmaWNhdGlvblR5cGUiOiJhY2NvdW50cy5lbWFpbC52ZXJpZnkiLCJjYW1wYWlnbklkIjoibm90aWZpY2F0aW9ucy5hdXRvLkRjMlVwVUN0RWUya1RSSzg0cEREbFEiLCJjYW1wYWlnbkdyb3VwIjoiYWNjb3VudHMuZW1haWwudmVyaWZ5IiwibGlua3MiOltdfX0sInVzZXJJZCI6LTF9.CWZPJSoOhYOZ3spAFIm88j-T_RRxqBVanJ8n3etHeQM&quot; rel=&quot;nofollow&quot; style=&quot;margin: 0 7px;&quot; target=&quot;_blank&quot;><img src=&quot;https://dt5zaw6a98blc.cloudfront.net/site-static/images/footer/googleplus.png&quot; alt=&quot;blog&quot; width=&quot;24&quot; style=&quot;border: none; width: 24px; height: 24px; opacity: 0.6;&quot; height=&quot;24&quot;/></a></div></td></tr><tr><td class=&quot;footerContent&quot; style=&quot;color:#808080; font-size:12px; line-height:150%; padding-top:0; padding-right:0; padding-bottom:0; padding-left:0; text-align:center;&quot;><div>You are receiving this email because Skaniara66w24k4ch4@checkccv.info is registered on Coursera.</div></td></tr><tr><td class=&quot;footerContent&quot; style=&quot;color:#808080; font-size:12px; line-height:150%; padding-top:0; padding-right:0; padding-bottom:20px; padding-left:0; text-align:center;&quot;><div>Please do not reply directly to this email. If you have any questions or feedback, please visit our <a target=&quot;blank&quot; href=&quot;https://anon.ws/?https://eventing.coursera.org/redirectSigned/eyJrZXkiOiJlbWFpbC5saW5rLm9wZW4iLCJ2YWx1ZSI6eyJ1cmwiOiJodHRwczovL2xlYXJuZXIuY291cnNlcmEuaGVscC9oYz91dG1fbWVkaXVtPWVtYWlsJnV0bV9zb3VyY2U9b3RoZXImdXRtX2NhbXBhaWduPWFjY291bnRzLmVtYWlsLnZlcmlmeX5ub3RpZmljYXRpb25zLmF1dG8uRGMyVXBVQ3RFZTJrVFJLODRwRERsUSIsInRyYWNraW5nIjp7InVzZXJJZCI6LTEsInVzZXJFbWFpbCI6IlNrYW5pYXJhNjZ3MjRrNGNoNEBjaGVja2Njdi5pbmZvIiwibm90aWZpY2F0aW9uVHlwZSI6ImFjY291bnRzLmVtYWlsLnZlcmlmeSIsImNhbXBhaWduSWQiOiJub3RpZmljYXRpb25zLmF1dG8uRGMyVXBVQ3RFZTJrVFJLODRwRERsUSIsImNhbXBhaWduR3JvdXAiOiJhY2NvdW50cy5lbWFpbC52ZXJpZnkiLCJsaW5rcyI6W119fSwidXNlcklkIjotMX0.JYy3hbwGzySZfWL_fJhKqIidyZNQ3_vZgzibAY5IHPA&quot; target=&quot;_blank&quot;>support site</a>.</div></td></tr><tr><td class=&quot;footerContent&quot; style=&quot;color:#808080; font-size:12px; line-height:150%; padding-top:0; padding-right:0; padding-bottom:20px; padding-left:0; text-align:center;&quot; valign=&quot;top&quot;><em>Copyright (c) 2022 Coursera, Inc</em>&amp;nbsp;|&amp;nbsp;381 E. Evelyn Avenue, Mountain View, CA 94041 USA</td></tr></table></table></td></tr></table></center><img src=&quot;https://eventing.coursera.org/img/cWLtvhtiKPBXozIXrNWBR0JvKKKzO3wwVoE3yjaGqclPzrFv_6i0cUt3h44LBe3r4BQ_Fcp_qGVT_fJHmjeylg.afwPWrvH53c-TPysbRt1sQ.2gHRUY2aSOuard4Sn9iifwf1G30awTDVI6AvK_qERFatlWxspIEODMxmswz4p4NNthUuR4L07yvW4GWED6HCx3HrFCiWXkUIsnbR7UuxKKUFBd3RwZm8gqxqwJfkuEhgrhYzw6yOtwbh7eI13raqWPvjaZ4GETfjbqForXqeHTGmMJuHbSnXNMJjMA1YcsuIvokK0_WetvQBmFTi2Ix1IyjZ6KvRq9_Ad7IP8zvQzNevxOHxVUUUdNWbN2emjiSEKB9BgeXayphcRpFfyHjzWjF-nshHzASAd2Re-KS0b9EQVJBugI2ICekdSI_mX_iuY9RsihzHMrSwMMNbI2qq8YaGwGPfcYg2HdLKdijhr6RZlPCCrbSNsRkfYFlt2Tia&quot; border=&quot;0&quot; width=&quot;1&quot; height=&quot;1&quot;>
+                                    <img border=&quot;0&quot; width=&quot;1&quot; height=&quot;1&quot; alt=&quot;&quot; src=&quot;http://click.mail.coursera.org/q/MxfyL95hkmUuxvKEyKC7Pg~~/AAAAAQA~/RgRlGU3gPlcIY291cnNlcmFCCmMz4Mg2Y2DbQLJSIFNrYW5pYXJhNjZ3MjRrNGNoNEBjaGVja2Njdi5pbmZvWAQAAAAA&quot;>
+                                    </body></html>" frameborder="0"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="page-footer font-small blue">
+
+                <!-- Copyright -->
+                <div class="footer-copyright text-center py-3">© 2022 Copyright:
+                    <a href="https://hakucloud.com"> haku1806</a>
+                </div>
+                <!-- Copyright -->
+
+            </footer>
+            <!-- Footer -->
+            <script src="./js/tmail.js"></script>
+</body>
+
+</html>

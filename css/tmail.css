@@ -1,0 +1,332 @@
+/* ".inherited-styles-for-exported-element" is a generated class for the inherited styles of the exported element, feel free to rename it. */
+
+* {
+    border: 0 solid #e5e7eb;
+    box-sizing: border-box;
+  }
+  
+  .inherited-styles-for-exported-element {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    line-height: 1.5;
+    tab-size: 4;
+  }
+  
+  ::-webkit-inner-spin-button {
+    height: auto;
+  }
+  
+  ::-webkit-search-decoration {
+    appearance: none;
+  }
+  
+  ::-webkit-file-upload-button {
+    appearance: button;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+  }
+  
+  ::after {
+    border-style: solid;
+  }
+  
+  ::-webkit-datetime-edit-fields-wrapper {
+    padding: 0;
+  }
+  
+  ::-webkit-date-and-time-value {
+    min-height: 1.5em;
+  }
+  
+  .mt-5 {
+    margin-top: 1.25rem;
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .min-h-tm-mobile {
+    min-height: 100px;
+  }
+  
+  .w-full {
+    width: 100%;
+  }
+  
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  
+  .flex-col {
+    flex-direction: column;
+  }
+  
+  .flex-col-reverse {
+    flex-direction: column-reverse;
+  }
+  
+  .justify-between {
+    justify-content: space-between;
+  }
+  
+  .truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .bg-white {
+    background-color: #fff;
+  }
+  
+  .p-5 {
+    padding: 1.25rem;
+  }
+  
+  .text-xs {
+    font-size: .75rem;
+    line-height: 1rem;
+  }
+  
+  .text-sm {
+    font-size: .875rem;
+    line-height: 1.25rem;
+  }
+  
+  .text-gray-400 {
+    color: #9fa6b2;
+  }
+  
+  .text-gray-600 {
+    color: #4b5563;
+  }
+  
+  .text-gray-800 {
+    color: #252f3f;
+  }
+  
+  @media (min-width: 1024px) {
+    .lg\:w-1\/3 {
+      width: 33.3333%;
+    }
+  }
+  
+  .hover\:bg-gray-50:hover {
+    background-color: #f9fafb;
+  }
+  
+  .divide-y>:not([hidden])~:not([hidden]) {
+    border-bottom-width: calc(1px*1);
+    border-top-width: calc(1px*(1 - 1));
+  }
+  
+  .divide-gray-200>:not([hidden])~:not([hidden]) {
+    border-color: #e5e7eb;
+  }
+
+  /* ".inherited-styles-for-exported-element" is a generated class for the inherited styles of the exported element, feel free to rename it. */
+
+* {
+    border: 0 solid #e5e7eb;
+    box-sizing: border-box;
+  }
+  
+  .inherited-styles-for-exported-element {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    line-height: 1.5;
+    tab-size: 4;
+  }
+  
+  strong {
+    font-weight: bolder;
+  }
+  
+  ::-webkit-inner-spin-button {
+    height: auto;
+  }
+  
+  ::-webkit-search-decoration {
+    appearance: none;
+  }
+  
+  ::-webkit-file-upload-button {
+    appearance: button;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+  }
+  
+  ::after, img {
+    border-style: solid;
+  }
+  
+  a {
+    text-decoration: inherit;
+  }
+  
+  img {
+    display: block;
+    height: auto;
+    vertical-align: middle;
+  }
+  
+  ::-webkit-datetime-edit-fields-wrapper {
+    padding: 0;
+  }
+  
+  ::-webkit-date-and-time-value {
+    min-height: 1.5em;
+  }
+  
+  .m-auto {
+    margin: auto;
+  }
+  
+  .block {
+    display: block;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .w-2\/3 {
+    width: 66.6667%;
+  }
+  
+  .max-w-full {
+    max-width: 100%;
+  }
+  
+  .flex-1 {
+    flex: 1 1 0;
+  }
+  
+  .pt-4 {
+    padding-top: 1rem;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .text-xs {
+    font-size: .75rem;
+    line-height: 1rem;
+  }
+  
+  .text-gray-400 {
+    color: #9fa6b2;
+  }
+  
+  @media (min-width: 1024px) {
+    .lg\:flex {
+      display: flex;
+    }
+  }
+  
+  /* ".inherited-styles-for-exported-element" is a generated class for the inherited styles of the exported element, feel free to rename it. */
+
+* {
+    border: 0 solid #e5e7eb;
+    box-sizing: border-box;
+  }
+  
+  .inherited-styles-for-exported-element {
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    line-height: 1.5;
+    tab-size: 4;
+  }
+  
+  strong {
+    font-weight: bolder;
+  }
+  
+  ::-webkit-inner-spin-button {
+    height: auto;
+  }
+  
+  ::-webkit-search-decoration {
+    appearance: none;
+  }
+  
+  ::-webkit-file-upload-button {
+    appearance: button;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+  }
+  
+  ::after, img {
+    border-style: solid;
+  }
+  
+  a {
+    text-decoration: inherit;
+  }
+  
+  img {
+    display: block;
+    height: auto;
+    vertical-align: middle;
+  }
+  
+  ::-webkit-datetime-edit-fields-wrapper {
+    padding: 0;
+  }
+  
+  ::-webkit-date-and-time-value {
+    min-height: 1.5em;
+  }
+  
+  .m-auto {
+    margin: auto;
+  }
+  
+  .block {
+    display: block;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  .w-2\/3 {
+    width: 66.6667%;
+  }
+  
+  .max-w-full {
+    max-width: 100%;
+  }
+  
+  .flex-1 {
+    flex: 1 1 0;
+  }
+  
+  .pt-4 {
+    padding-top: 1rem;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  
+  .text-xs {
+    font-size: .75rem;
+    line-height: 1rem;
+  }
+  
+  .text-gray-400 {
+    color: #9fa6b2;
+  }
+  
+  @media (min-width: 1024px) {
+    .lg\:flex {
+      display: flex;
+    }
+  }
+  
