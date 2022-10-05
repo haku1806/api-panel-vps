@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bonecloud API</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-digital-ocean.png">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- <script src="js/lib/jquery.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mouse0270-bootstrap-notify/3.1.3/bootstrap-notify.min.js"
+    integrity="sha512-d0ZsJAyXsXlpeDNAhXj4mbaqpLfdyoOaQFmaFVG/KodZnAaVrdOsO9KiG62V7dcV+sHIFb7VTMmkB5JntAoq+Q=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mouse0270-bootstrap-notify/3.1.3/bootstrap-notify.js"
+    integrity="sha512-qoiMDdScbCFcBkB94JPbUdrqiVFQEukiCnQlafXF+cVAiDayHeT9jwnBrXSdPUOpk7KAwhrTgKFZqH/FDFiTcQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+  <!-- nav bar  -->
+  <nav class="navbar navbar-expand-lg">
+    <!-- Brand/logo -->
+    <a href="#" onclick="window.location.reload(true);">
+      <h1 class="">HAKU API</h1>
+    </a>
+
+    <button style="outline: none;" class="navbar-toggler" type="button" data-toggle="collapse"
+      data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+      aria-label="Toggle navigation">
+
+      <span class="navbar-toggler-icon"></span>
+
+    </button>
+
+    <div class="collapse navbar-collapse list-nav" id="navbarNavDropdown">
+
+      <!-- Links -->
+      <ul class="navbar-nav ml-auto">
+
+        <li><a href="index.html" class="item-nav">Linode</a></li>
+        <li><a href="digitalocean.html" class="item-nav">DigitalOcean</a></li>
+        <li><a href="bonecloud.html" class="item-nav">Bonecloud</a></li>
+        <li><a href="textverified.html" class="item-nav">Textverified</a></li>
+        <li><a href="tmail.html" class="item-nav">Check Mail</a></li>
+
+
+      </ul>
+  </nav>
+  <!-- end nav bar  -->
+
+  <div class="container">
+    <div class="col">
+
+      <div class="card-box" style="padding-bottom: 5px; border: 4px solid #3de0d8;">
+
+        <div class="row">
+          <div class="col">
+            <h1 class="mt-6 title-notify" style="text-align: center; ;padding-bottom: 50px;">Panel
+              Bonecloud</h1>
+
+          </div>
+        </div>
+
+        <div class="row" style="margin-top: 30px;">
+          <div class="col">
+            <div class="card-box" style="padding-bottom: 5px;">
+              <div class="row">
+                <div class="input-group mb-3">
+                  <input type="text" id='api' class="form-control" placeholder="Nhập TOKEN VPS" aria-label="Token VPS"
+                    aria-describedby="basic-addon2">
+                  <div class="input-group-append">
+                    <button class="btn btn-danger" type="button" onclick='check_live_account()'>GET</button>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col" style="padding: 0;">
+                  <!-- <h4 class="header-title mb-3 resmobile">Test</h4> -->
+                  <a href="add.html" class="btn btn-success mb-4 resmobo">Tất cả: <span id="total_vps">0</span></a>
+
+
+                  
+
+
+                  <!-- <a href="add.html" class="btn btn-success mb-4 resmobo">Sắp hết hạn: </a> -->
+                </div>
+                <div class="col-5" style="text-align: right; padding: 0;">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-danger dropdown-toggle mb-4 resmobo" data-toggle="dropdown"
+                      aria-haspopup="true" aria-expanded="false">
+                      Thao tác nhiều VPS
+                    </button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="#" onclick="confirmNotify(0, '0', 1)">Bật VPS</a>
+                      <a class="dropdown-item" href="#" onclick="confirmNotify(0, '0', 2)">Khởi động lại VPS</a>
+                      <a class="dropdown-item" href="#" onclick="confirmNotify(0, '0', 3)">Tắt VPS</a>
+                      <div class="dropdown-divider"></div>
+
+                    </div>
+                  </div>
+                </div>
+
+                <input class="form-control" id="searchbox" type="text" placeholder="Tìm kiếm trong danh sách..">
+              </div>
+              <div class="table-responsive tableFixHead">
+                <table class="table table-borderless table-hover table-centered m-0 table-striped">
+                  <thead class="thead-bg">
+                    <tr>
+                      <th>
+                        <input type="checkbox" id="checkbox_all" onclick="change_status_checkbox_all()">
+                      </th>
+                      <th>STT</th>
+                      <th>IP</th>
+                      <th>Khu vực</th>
+                      <th>Hết hạn</th>
+                      <th>Hệ điều hành</th>
+                      <th>Trạng thái</th>
+                      <th>Hành động</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <td id="spinner" style="text-align: center;" colspan="12"><img style="height: 100px"
+                        src="images/spinner.gif" alt=""></td>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="bootVPSModal" tabindex="-1" role="dialog"
+          aria-labelledby="bootVPSModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="bootVPSModalLabel" style="color: black; font-weight: bold">Xác nhận <span class="bootVPSModalLabelType" style="color: red"></span> VPS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" style="color: black" id="bootVPSModalBody">
+                Bạn có thực sự muốn \n
+                ...Model body
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="bootVPSModalConfirm">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="page-footer font-small blue">
+
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3">© 2022 Copyright:
+        <a href="https://hakucloud.com"> haku1806</a>
+      </div>
+      <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+
+    <script src="./js/bonecloud.js"></script>
+</body>
+
+</html>

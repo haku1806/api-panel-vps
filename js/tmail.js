@@ -1,4 +1,4 @@
-var host = "http://localhost:1812/api";
+var host = "http://server.hakucloud.com:1812/api";
 var account = []
 var message_id = 0
 
@@ -24,10 +24,13 @@ async function check_mail() {
             redirect: 'follow',
         };
         console.log(requestOptions)
+        change_status_btn();
+        noti(0, 'Reading email. Please wait a moment!');
         fetch(url, requestOptions)
             .then(response => {
                 if (!response.ok) {
                     noti(1, `HTTP error: ${response.status}`);
+                    reset_status_btn();
                     throw new Error(`HTTP error: ${response.status}`);
                 }
 
@@ -36,7 +39,7 @@ async function check_mail() {
             .then(result => {
                 console.log(result);
                 if (result.success) {
-                    console.log(result.data);
+                    // console.log(result.data);
                     $('#subject_list').empty();
                     $("#message_content").empty();
                     for (let i = result.data.messages.length;  i >= 1; i--) {
@@ -102,6 +105,9 @@ data.body + '</textarea>' +
             .catch(error => {
                 console.log('error', error)
                 noti(1, error);
+            })
+            .finally(() => {
+                reset_status_btn();
             });
     }
 
@@ -158,6 +164,14 @@ function read_mail_detail(id) {
     message_id = id;
     console.log(message_id);
     document.querySelector('.message-content').scrollIntoView({ behavior: 'smooth' });
+}
+
+function reset_status_btn() {
+    $("#btn-check").text("Check");
+}
+
+function change_status_btn() {
+    $("#btn-check").text("Loading...");
 }
 
 /*-------------------------------------------------*/
